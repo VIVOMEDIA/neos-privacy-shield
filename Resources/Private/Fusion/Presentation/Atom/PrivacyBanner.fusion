@@ -1,6 +1,6 @@
 prototype(VIVOMEDIA.PrivacyShield:Atom.PrivacyBanner) < prototype(Neos.Fusion:Component) {
 
-    content = 'privacy-banner'
+    class = 'privacy-banner'
 
     renderer = afx`
         <div class={props.class}>
