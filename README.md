@@ -1,4 +1,5 @@
 # VIVOMEDIA.PrivacyShield
+Neos package to block third party content before consent was given.
 
 ## Example usage
 
