@@ -65,4 +65,4 @@ let PrivacyShield = {
             this.removeLoading(target);
         }
     }
-}
+};
