@@ -1,0 +1,26 @@
+prototype(VIVOMEDIA.PrivacyShield:Molecule.PrivacyShield) < prototype(Neos.Fusion:Component) {
+
+    content = null
+    originalContent = ${value}
+
+    type = null
+    @context.type = ${this.type}
+
+    class = Neos.Fusion:Join {
+        privacy-shield = "privacy-shield"
+        is-loading = "is-loading"
+        type-class = ${"privacy-shield-" + type}
+        @glue = " "
+    }
+
+    renderer = afx`
+        <div class={props.class} data-type={props.type}>
+            <div class="preview-content">
+                {props.content}
+            </div>
+            <script class="original-content" type="text/plain">
+                {props.originalContent}
+            </script>
+        </div>
+    `
+}
