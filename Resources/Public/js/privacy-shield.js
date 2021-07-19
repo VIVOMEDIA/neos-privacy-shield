@@ -1,16 +1,22 @@
-$(document).ready(function () {
-    $(document).on('click', '.consent-privacy-shield', function (e) {
-        let type = $(e.target).closest('.privacy-shield').attr('data-type');
-        PrivacyShield.consentPrivacyShield(type);
-    });
-
+window.addEventListener('DOMContentLoaded', (event) => {
     PrivacyShield.allowConsentedShieldTypes();
 });
 
-let PrivacyShield = {
+document.querySelectorAll('.consent-privacy-shield').forEach(shield => {
+    shield.addEventListener('click', (e) => {
+        var type = e.target.closest('.privacy-shield').getAttribute('data-type');
+        PrivacyShield.consentPrivacyShield(type);
+    });
+});
+
+var PrivacyShield = {
 
     getConsentFromStore() {
-        let consent = JSON.parse(sessionStorage.getItem('privacy-shield-consent'));
+        if (!window.sessionStorage) {
+            return {};
+        }
+
+        var consent = JSON.parse(sessionStorage.getItem('privacy-shield-consent'));
 
         if (consent === null) {
             consent = {};
@@ -20,6 +26,9 @@ let PrivacyShield = {
     },
 
     putConsentIntoStore(consent) {
+        if (!window.sessionStorage) {
+            return;
+        }
         sessionStorage.setItem('privacy-shield-consent', JSON.stringify(consent));
     },
 
@@ -41,21 +50,28 @@ let PrivacyShield = {
     },
 
     replacePreviewWithOriginalContent(type) {
-        $('.privacy-shield[data-type="' + type + '"]').each(function (i, shield) {
-            $(shield).replaceWith($('.original-content', shield).html());
+        document.querySelectorAll('.privacy-shield[data-type="' + type + '"]').forEach(shield => {
+            originalContentString = shield.querySelectorAll('.original-content')[0].innerHTML;
+
+            var originalContentWrapper = document.createElement('div');
+            originalContentWrapper.innerHTML = originalContentString.trim();
+            var originalContent = originalContentWrapper.firstChild;
+
+            shield.parentNode.replaceChild(originalContent, shield);
         });
     },
 
     removeLoading(type) {
-        $('.privacy-shield.loading[data-type="' + type + '"]').each(function (i, shield) {
-            $(shield).removeClass('is-loading').addClass('is-loaded');
+        document.querySelectorAll('.privacy-shield.is-loading[data-type="' + type + '"]').forEach(shield => {
+            shield.classList.remove('is-loading');
+            shield.classList.add('is-loaded');
         });
     },
 
     allowConsentedShieldTypes() {
-        let consent = this.getConsentFromStore();
+        var consent = this.getConsentFromStore();
         for (const [target, targetConsent] of Object.entries(consent)) {
-            let targetAllowed = false;
+            var targetAllowed = false;
             for (const [source, value] of Object.entries(targetConsent)) {
                 if (targetAllowed === false && value === true) {
                     targetAllowed = true;
