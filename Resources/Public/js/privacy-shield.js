@@ -59,6 +59,14 @@ var PrivacyShield = {
 
             shield.parentNode.replaceChild(originalContent, shield);
         });
+
+        document.querySelectorAll('script[type="text/plain"][data-privacy-shield-type="' + type + '"]').forEach(script => {
+
+            let originalScript = script.cloneNode();
+            originalScript.type = 'application/javascript';
+
+            script.parentNode.replaceChild(originalScript, script);
+        });
     },
 
     removeLoading(type) {
