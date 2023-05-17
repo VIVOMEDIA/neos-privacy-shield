@@ -1,6 +1,12 @@
 # VIVOMEDIA.PrivacyShield
 Neos package to block third party content before consent was given.
 
+## Installation
+
+```bash
+composer require vivomedia/neos-privacy-shield
+```
+
 ## Example usage
 
 ```
@@ -20,6 +26,4 @@ prototype(Jonnitto.PrettyEmbedYoutube:Component.Youtube) {
         `
     }
 }
-
 ```
-
