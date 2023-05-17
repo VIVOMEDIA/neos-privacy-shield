@@ -19,7 +19,7 @@ prototype(VIVOMEDIA.PrivacyShield:Molecule.PrivacyShield) < prototype(Neos.Fusio
                 {props.content}
             </div>
             <script class="original-content" type="text/plain">
-                {props.originalContent}
+                {String.base64encode(props.originalContent)}
             </script>
         </div>
     `

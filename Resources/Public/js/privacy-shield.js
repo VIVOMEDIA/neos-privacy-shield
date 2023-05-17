@@ -51,10 +51,11 @@ var PrivacyShield = {
 
     replacePreviewWithOriginalContent(type) {
         document.querySelectorAll('.privacy-shield[data-type="' + type + '"]').forEach(shield => {
-            originalContentString = shield.querySelectorAll('.original-content')[0].innerHTML;
+            originalContentString = shield.querySelectorAll('.original-content')[0].innerText;
 
             var originalContentWrapper = document.createElement('div');
-            originalContentWrapper.innerHTML = originalContentString.trim();
+            originalContentWrapper.innerHTML = atob(originalContentString.trim()).trim();
+
             var originalContent = originalContentWrapper.firstChild;
 
             shield.parentNode.replaceChild(originalContent, shield);
