@@ -34,7 +34,7 @@ var PrivacyShield = {
 
     storeConsent(type, source, value) {
         consent = this.getConsentFromStore();
-        consent[type] = consent[type] ?? {}
+        consent[type] = consent[type] ?? {};
         consent[type][source] = value;
 
         this.putConsentIntoStore(consent);
