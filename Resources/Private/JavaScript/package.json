@@ -1,0 +1,14 @@
+{
+  "name": "vivomedia/privacy-shield",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "author": "dlubitz",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  },
+  "dependencies": {
+  }
+}
