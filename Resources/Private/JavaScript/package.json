@@ -10,5 +10,9 @@
     "esbuild": "^0.25.0"
   },
   "dependencies": {
+  },
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "watch": "node esbuild.config.js --watch"
   }
 }
