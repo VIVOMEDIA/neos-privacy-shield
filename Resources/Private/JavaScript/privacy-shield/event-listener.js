@@ -1,6 +1,6 @@
 import PrivacyShield from "./index.js";
 
-window.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', (event) => {
     PrivacyShield.allowConsentedShieldTypes();
 
     document.querySelectorAll('.consent-privacy-shield').forEach(shield => {
