@@ -22,3 +22,13 @@ buildWithWatch({
     target: "es6",
     format: "esm",
 }).catch(() => process.exit(1));
+
+// Build the main output
+buildWithWatch({
+    entryPoints: ['index-overlay.js'],
+    outfile: '../../Public/js/privacy-shield-overlay.js',
+    minify: true,
+    bundle: true,
+    target: "es6",
+    format: "esm",
+}).catch(() => process.exit(1));
