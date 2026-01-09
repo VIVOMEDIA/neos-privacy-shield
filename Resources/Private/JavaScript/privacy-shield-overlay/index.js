@@ -5,6 +5,7 @@ function initPrivacyShieldOverlay() {
         const previewContentPicture = shield.querySelector('.preview-content picture');
 
         if (privacyBanner && previewContentPicture) {
+            privacyBanner.classList.add('is-overlay');
             if (privacyBanner.offsetHeight <= previewContentPicture.offsetHeight) {
                 privacyBanner.classList.add('is-overlay');
             } else {
